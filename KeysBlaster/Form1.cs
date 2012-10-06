@@ -20,11 +20,19 @@ namespace KeysBlaster
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
-            timer1.Interval = 3000;
+            refreshTimer();
+        }
+
+        private void refreshTimer()
+        {
+            Decimal seconds = secondsToWait.Value;
+            seconds = seconds <= 0 ? 1 : seconds;
+            timer1.Interval = (int)seconds * 1000;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            refreshTimer();
             inputText = textBox1.Text;
             timer1.Start();
 
